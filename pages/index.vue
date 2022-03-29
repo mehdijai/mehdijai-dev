@@ -24,7 +24,21 @@ export default {
   background: $gray-light
   height: calc(3.5 * 100vh)
   top: calc(30vh - 50px)
-  left: 55px
+  left: 40px
+
+@media (max-width: 616px)
+  .v-timeline
+    height: calc(6 * 100vh)
+
+@media (max-width: 582px)
+  .v-timeline
+    left: 30px
+
+@media (max-width: 464px)
+  .v-timeline
+    left: 20px
+    width: 1px
+    top: calc(30vh - 60px)
 
 footer
   background: $black-light

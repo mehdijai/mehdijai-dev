@@ -31,6 +31,9 @@ form
         align-items: center
         column-gap: 10px
         margin-bottom: 10px
+        @media (max-width: 425px)
+          flex-direction: column
+          row-gap: 10px
     input, textarea
         width: 100%
         padding: 10px 13px
