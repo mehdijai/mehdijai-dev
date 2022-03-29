@@ -6,7 +6,7 @@
     @click="$router.push('/' + project.slug)"
   >
     <div class="thumbnail"></div>
-    <Transition name="slide">
+    <Transition name="slide-info">
       <div v-if="hover === project.id" class="info-bar">
         <div class="wrapper">
           <h3>{{ project.title }}</h3>
@@ -71,13 +71,13 @@ export default {
   .project-card
     width: 235px
 
-.slide-enter-active
-  animation: menu-out 0.2s ease-in-out
+.slide-info-enter-active
+  animation: info-out 0.2s ease-in-out
 
-.slide-leave-active
-  animation: menu-out 0.2s ease-in-out reverse
+.slide-info-leave-active
+  animation: info-out 0.2s ease-in-out reverse
 
-@keyframes menu-out
+@keyframes info-out
   from
     clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%)
   to

@@ -6,6 +6,11 @@ export const state = () => ({
       title: "Tabarro3.ma",
       thumbnail: "",
       tags: [1, 3, 4, 5],
+      description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
+      voluptatum dolores magni enim voluptatem accusamus iste velit
+      assumenda optio sed minima, incidunt, officiis, eveniet eaque omnis
+      doloribus facilis voluptatibus? Consequuntur?
+      [Official Link]('/')`,
     },
     {
       id: 2,
@@ -13,6 +18,11 @@ export const state = () => ({
       title: "Autodrive.ma",
       thumbnail: "",
       tags: [1, 2, 6, 5],
+      description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
+      voluptatum dolores magni enim voluptatem accusamus iste velit
+      assumenda optio sed minima, incidunt, officiis, eveniet eaque omnis
+      doloribus facilis voluptatibus? Consequuntur?
+      [Official Link]('/')`,
     },
     {
       id: 3,
@@ -20,6 +30,11 @@ export const state = () => ({
       title: "3SP Application",
       thumbnail: "",
       tags: [7, 3, 8, 5, 9],
+      description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
+      voluptatum dolores magni enim voluptatem accusamus iste velit
+      assumenda optio sed minima, incidunt, officiis, eveniet eaque omnis
+      doloribus facilis voluptatibus? Consequuntur?
+      [Official Link]('/')`,
     },
     {
       id: 4,
@@ -27,6 +42,11 @@ export const state = () => ({
       title: "3SP Landing page",
       thumbnail: "",
       tags: [9, 10, 13, 5, 11, 12],
+      description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
+      voluptatum dolores magni enim voluptatem accusamus iste velit
+      assumenda optio sed minima, incidunt, officiis, eveniet eaque omnis
+      doloribus facilis voluptatibus? Consequuntur?
+      [Official Link]('/')`,
     },
     {
       id: 5,
@@ -34,6 +54,11 @@ export const state = () => ({
       title: "YTP App",
       thumbnail: "",
       tags: [7, 3, 9, 5, 11, 8, 14],
+      description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
+      voluptatum dolores magni enim voluptatem accusamus iste velit
+      assumenda optio sed minima, incidunt, officiis, eveniet eaque omnis
+      doloribus facilis voluptatibus? Consequuntur?
+      [Official Link]('/')`,
     },
     {
       id: 6,
@@ -41,6 +66,11 @@ export const state = () => ({
       title: "Medostudios.com",
       thumbnail: "",
       tags: [9, 10, 13, 5],
+      description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
+      voluptatum dolores magni enim voluptatem accusamus iste velit
+      assumenda optio sed minima, incidunt, officiis, eveniet eaque omnis
+      doloribus facilis voluptatibus? Consequuntur?
+      [Official Link]('/')`,
     },
   ],
   tags: [
@@ -66,9 +96,9 @@ export const getters = {
   getProjects(state) {
     const projects = []
 
-    state.projects.forEach(({ title, thumbnail, tags, id, slug }) => {
+    state.projects.forEach(({ title, thumbnail, tags, id, slug, description }) => {
       tags = state.tags.filter((t) => tags.includes(t.id))
-      projects.push({ title, thumbnail, tags, id, slug })
+      projects.push({ title, thumbnail, tags, id, slug, description })
     })
 
     return projects

@@ -1,5 +1,5 @@
 <template>
-  <section id="contact" class="contact">
+  <section class="contact">
     <header>
       <h2>Contact me.</h2>
       <p>
@@ -62,9 +62,7 @@ export default {
         flex-direction: column
         row-gap: 10px
       a
-        color: $primary-light
-        font-weight: 500
-        text-decoration: none
+        @extend .extLink
 
   .contact-methods
     max-width: 1000px

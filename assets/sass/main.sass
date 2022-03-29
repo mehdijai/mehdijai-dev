@@ -19,6 +19,7 @@ $warning: #f0ab5a
 body
   background: $black
   color: $gray-light
+  position: relative
 
 html
   scroll-behavior: smooth
@@ -31,6 +32,27 @@ button
   text-decoration: none
   font-size: 0.9rem
   cursor: pointer
+
+.extLink
+  color: $primary-light
+  font-weight: 500
+  text-decoration: none
+  transition: 0.2s color ease-in-out
+  position: relative
+  &::after
+    content: ""
+    height: 3px
+    width: 0
+    position: absolute
+    bottom: -5px
+    left: 0
+    background: $primary-light
+    transition: 0.2s width ease-in-out
+
+  &:hover
+    color: $gray-light
+    &::after
+      width: 50%
 
 @mixin timelineBulb($top)
   content: ""

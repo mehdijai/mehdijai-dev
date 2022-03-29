@@ -29,14 +29,15 @@ export default {
 
 <style lang="sass">
 .hero
-  height: calc(100vh - 58px)
+  height: 100vh
+  min-height: 480px
   position: relative
 
   h1
     width: 519px
     font-size: 3rem
     position: absolute
-    top: 40%
+    top: 50%
     left: 50%
     transform: translateX(-50%) translateY(-50%)
     text-align: center
@@ -52,7 +53,7 @@ export default {
     column-gap: 20px
     position: absolute
     left: 50%
-    top: 40%
+    top: 50%
     width: 50vw
     span
       font-weight: 500
@@ -61,7 +62,7 @@ export default {
       user-select: none
     &.row-1
       justify-content: left
-      transform: translateX(-50%) translateY(-5rem)
+      transform: translateX(-50%) translateY(-6rem)
     &.row-2
       justify-content: right
       transform: translateX(-50%) translateY(5rem)
@@ -73,10 +74,11 @@ export default {
     bottom: 0
     opacity: 0.04
     img
+      user-select: none
       width: 100%
 
   &::after
-    @include timelineBulb(40%)
+    @include timelineBulb(50%)
 
 @media (max-width: 752px)
   .hero

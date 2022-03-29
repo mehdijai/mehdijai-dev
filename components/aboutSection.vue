@@ -1,5 +1,5 @@
 <template>
-  <section id="about" class="about">
+  <section class="about">
     <div class="container">
       <div class="brief">
         <h2>About me.</h2>
@@ -57,7 +57,8 @@ export default {
 
 <style lang="sass">
 .about
-    min-height: 100vh
+    height: 100vh
+    min-height: 550px
     display: flex
     position: relative
     &::after
@@ -76,7 +77,6 @@ export default {
               margin-bottom: 10px
           p
               line-height: 1.4
-              letter-spacing: 0.2px
               font-weight: 300
               text-align: justify
         .image

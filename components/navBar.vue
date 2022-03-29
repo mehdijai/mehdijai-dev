@@ -8,8 +8,11 @@
         <nuxt-link
           :key="index"
           class="link"
-          :class="link.isCTA ? 'cta' : ''"
-          :to="link.link"
+          :class="getClass[index]"
+          :to="{
+            path: link.link.includes('#') ? '/' : link.link,
+            hash: link.link.includes('#') ? link.link.replace('/', '') : null,
+          }"
           >{{ link.title }}</nuxt-link
         >
       </template>
@@ -21,7 +24,7 @@
         <span class="material-icons">menu</span>
       </button>
     </div>
-    <Transition name="slide">
+    <Transition name="slide-nav">
       <div v-if="openMenu" class="menu-list">
         <template v-for="(link, index) in links">
           <nuxt-link
@@ -65,7 +68,29 @@ export default {
           isCTA: true,
         },
       ],
+      currentHash: null,
     }
+  },
+
+  computed: {
+    getClass() {
+      return this.links.map((link) => {
+        let linkClass = ""
+        if (link.isCTA) {
+          linkClass += "cta "
+        }
+
+        if (this.currentHash !== null && link.link.includes(this.currentHash))
+          linkClass += "active-link"
+
+        return linkClass
+      })
+    },
+  },
+  watch: {
+    $route(to) {
+      this.currentHash = to.hash !== "" ? to.hash : null
+    },
   },
 }
 </script>
@@ -73,8 +98,11 @@ export default {
 <style lang="sass">
 nav
   width: 100%
-  background-color: $black-light
-  position: relative
+  background-color: rgba($black-light, 0.8)
+  backdrop-filter: blur(5px)
+  box-shadow: 0 5px 10px 2px rgba($black, 0.5)
+  position: fixed
+  z-index: 1000
 
   .container
     max-width: 1000px
@@ -83,6 +111,7 @@ nav
     display: flex
     column-gap: 10px
     align-items: center
+    position: relative
 
     .logo
       margin-right: auto
@@ -163,10 +192,14 @@ nav
         &:hover
           background: $primary
 
-.slide-enter-active
+.active-link
+  color: $primary-light
+  background: $black
+
+.slide-nav-enter-active
   animation: menu-out 0.5s ease-in-out
 
-.slide-leave-active
+.slide-nav-leave-active
   animation: menu-out 0.5s ease-in-out reverse
 
 @media (max-width: 475px)
