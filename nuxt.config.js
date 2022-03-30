@@ -4,6 +4,7 @@ export default {
     title: "Mehdi Jai - JavaScript Fullstack developer.",
     htmlAttrs: {
       lang: "en",
+      prefix: "og:http://ogp.me/ns/article"
     },
     meta: [
       { charset: "utf-8" },
@@ -15,6 +16,22 @@ export default {
           "Mehdi Jai, JavaScript Fullstack developer based in Morocco. I create SaaS, Web Applications and Desktop Application With JavaScript and VueJS.",
       },
       { name: "format-detection", content: "telephone=no" },
+      {
+        property: "og:site_name",
+        content: "Mehdi Jai Dev",
+      },
+      {
+        property: "twitter:site:id",
+        content: "@jai_mehdi",
+      },
+      {
+        property: "twitter:creator",
+        content: "@jai_mehdi",
+      },
+      {
+        property: "twitter:creator:id",
+        content: "@jai_mehdi",
+      },
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.svg" },

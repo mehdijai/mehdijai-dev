@@ -6,9 +6,9 @@
         I’m currently open for work as JS fullstack or VueJS frontend developer
         opportunity.
       </p>
-      <div class="contact-info">
-        <a href="mailto:contact@mehdijai.me">contact@mehdijai.me</a>
-        <a href="tel:+212766710036">+212 7 66 71 00 36</a>
+      <div itemscope itemtype="https://schema.org/Person" class="contact-info">
+        <a itemprop="email" href="mailto:contact@mehdijai.me">contact@mehdijai.me</a>
+        <a itemprop="telephone" href="tel:+212766710036">+212 7 66 71 00 36</a>
       </div>
     </header>
     <div class="contact-methods">

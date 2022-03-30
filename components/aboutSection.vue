@@ -1,10 +1,10 @@
 <template>
   <section class="about">
-    <div class="container">
+    <div itemscope itemtype="https://schema.org/Person" class="container">
       <div class="brief">
         <h2>About me.</h2>
         <p>
-          Mehdi Jai, UI/UX designer & JavaScript web developer. I started my
+          <span itemprop="name">Mehdi Jai</span>, <span itemprop="jobTitle">JavaScript web developer</span>. I started my
           journey in late 2014 out of curiosity. However, The start of my professional
           career was in 2019 with building my two majors SaaS; Tabarro3.ma,
           Autodrive.ma. I have a long experience with JavaScript, NodeJS, and PHP
@@ -13,7 +13,7 @@
         </p>
       </div>
       <div class="image">
-        <img src="/profile-picture.png" />
+        <img itemprop="image" src="/profile-picture.png" />
         <svg
           class="v-line"
           width="2"
@@ -73,12 +73,15 @@ export default {
         .brief
           max-width: 400px
           h2
-              font-size: 2rem
-              margin-bottom: 10px
+            font-size: 2rem
+            margin-bottom: 10px
           p
-              line-height: 1.4
-              font-weight: 300
-              text-align: justify
+            line-height: 1.4
+            font-weight: 300
+            text-align: justify
+            span
+              font-weight: 600
+
         .image
           position: relative
           width: 400px

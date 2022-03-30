@@ -1,5 +1,7 @@
 <template>
   <div
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
     class="project-card"
     @mouseenter="hover = project.id"
     @mouseleave="hover = null"
@@ -9,7 +11,7 @@
     <Transition name="slide-info">
       <div v-if="hover === project.id" class="info-bar">
         <div class="wrapper">
-          <h3>{{ project.title }}</h3>
+          <h3 itemprop="about">{{ project.title }}</h3>
           <div class="tags">
             <template v-for="tag in project.tags">
               <CategoryTag :key="'tag-' + tag.id" :tag="tag" />

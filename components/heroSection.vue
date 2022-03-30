@@ -1,6 +1,6 @@
 <template>
   <section class="hero">
-    <h1>Mehdi Jai, <span>JavaScript Front-end developer</span></h1>
+    <h1>Mehdi Jai, <span>JavaScript Fullstack developer</span></h1>
     <div class="specialties row-1">
       <span>HTML5</span>
       <span>CSS3</span>
