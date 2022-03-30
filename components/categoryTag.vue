@@ -20,6 +20,7 @@ export default {
 
 <style lang="sass">
 .tag
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
     padding: 5px 8px
     border-radius: 2px
     font-weight: 600

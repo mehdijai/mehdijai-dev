@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { gsap } from "gsap"
 export default {
   name: "NavBar",
   data() {
@@ -71,7 +72,6 @@ export default {
       currentHash: null,
     }
   },
-
   computed: {
     getClass() {
       return this.links.map((link) => {
@@ -92,11 +92,26 @@ export default {
       this.currentHash = to.hash !== "" ? to.hash : null
     },
   },
+  mounted() {
+    const tl = gsap.timeline({
+      defaults: { duration: 0.5, ease: "power4.inOut" },
+    })
+    tl.from("nav", {
+      clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
+      opacity: 0,
+    })
+    .from(".container > a", {
+      x: -5,
+      opacity: 0,
+      stagger: 0.1
+    }, "-=0.3")
+  },
 }
 </script>
 
 <style lang="sass">
 nav
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
   width: 100%
   background-color: rgba($black-light, 0.8)
   backdrop-filter: blur(5px)

@@ -1,8 +1,8 @@
 <template>
   <section class="contact">
     <header>
-      <h2>Contact me.</h2>
-      <p>
+      <h2 class="contact-title">Contact me.</h2>
+      <p class="contact-brief">
         I’m currently open for work as JS fullstack or VueJS frontend developer
         opportunity.
       </p>
@@ -29,8 +29,46 @@
 </template>
 
 <script>
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { CSSRulePlugin } from "gsap/CSSRulePlugin"
 export default {
   name: "ContactSection",
+  mounted() {
+    gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)
+    const tl = gsap.timeline({
+      defaults: { duration: 0.5, ease: "power4.inOut" },
+      scrollTrigger: ".contact",
+    })
+    tl.from(".contact-title", {
+      clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
+    })
+    .from(
+      CSSRulePlugin.getRule(".contact:after"),
+      {
+        cssRule: {
+          y: -50,
+          clipPath: "circle(0.1% at 50% 50%)",
+        },
+      },
+      "-=0.7"
+    )
+    .from(".contact-brief", {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+    }, "-=0.5")
+    .from(".contact-info > a", {
+      clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
+      stagger: 0.2
+    }, "-=0.4")
+    .from(".contact-form", {
+      clipPath: "circle(0.1% at 50% 0)",
+    }, "-=0.5")
+    .from(".sm > a", {
+      opacity: 0,
+      y: -5,
+      stagger: 0.2
+    }, "-=0.4")
+  },
 }
 </script>
 
@@ -46,11 +84,13 @@ export default {
 
   header
     text-align: center
-    h2
+    .contact-title
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%)
       font-size: 2.5rem
       margin-bottom: 10px
-    p
+    .contact-brief
       font-weight: 400
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%)
 
     .contact-info
       display: flex
@@ -62,6 +102,7 @@ export default {
         flex-direction: column
         row-gap: 10px
       a
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%)
         @extend .extLink
 
   .contact-methods
@@ -84,6 +125,9 @@ export default {
 
 @media (max-width: 425px)
   .contact
+    header
+      .contact-title
+        font-size: 2rem
     &::after
       @include timelineBulb(9%)
 </style>

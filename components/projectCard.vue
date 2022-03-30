@@ -46,6 +46,7 @@ export default {
   width: 280px
   position: relative
   cursor: pointer
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%)
   .thumbnail
     display: block
     width: 100%

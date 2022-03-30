@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { gsap } from "gsap"
 export default {
   name: "DefaultLayout",
   mounted() {
@@ -26,6 +27,12 @@ export default {
       } else {
         fabButton.style.display = "none"
       }
+    })
+
+    gsap.from(".v-timeline", {
+      duration: 0.7,
+      ease: "power4.inOut",
+      height: 0,
     })
   },
   methods: {

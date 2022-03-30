@@ -1,6 +1,8 @@
 <template>
   <section class="hero">
-    <h1>Mehdi Jai, <span>JavaScript Fullstack developer</span></h1>
+    <h1 class="headline">
+      Mehdi Jai, <span>JavaScript Fullstack developer</span>
+    </h1>
     <div class="specialties row-1">
       <span>HTML5</span>
       <span>CSS3</span>
@@ -22,8 +24,49 @@
 </template>
 
 <script>
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { CSSRulePlugin } from "gsap/CSSRulePlugin"
+
 export default {
   name: "HeroSection",
+  mounted() {
+    gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)
+    const tl = gsap.timeline({
+      defaults: { duration: 0.7, ease: "power4.inOut" },
+      scrollTrigger: ".hero",
+    })
+    tl.from(".headline", {
+      clipPath: "polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)",
+      opacity: 0,
+    })
+    .from(
+        CSSRulePlugin.getRule(".hero:after"),
+        {
+          cssRule: {
+            y: -50,
+            clipPath: "circle(0.1% at 50% 50%)",
+          },
+        },
+        "-=0.7"
+      )
+      .from(
+        ".row-1",
+        {
+          xPercent: -60,
+          opacity: 0,
+        },
+        "-=0.6"
+      )
+      .from(
+        ".row-2",
+        {
+          xPercent: -40,
+          opacity: 0,
+        },
+        "-=0.6"
+      )
+  },
 }
 </script>
 
@@ -33,7 +76,9 @@ export default {
   min-height: 480px
   position: relative
 
-  h1
+  .headline
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
+    opacity: 1
     width: 519px
     font-size: 3rem
     position: absolute
@@ -54,7 +99,7 @@ export default {
     position: absolute
     left: 50%
     top: 50%
-    width: 50vw
+    width: 40vw
     span
       font-weight: 500
       letter-spacing: 0.03rem
@@ -82,7 +127,7 @@ export default {
 
 @media (max-width: 752px)
   .hero
-    h1
+    .headline
       top: 30%
       font-size: 2rem
       width: 341.5px
@@ -104,7 +149,7 @@ export default {
 
 @media (max-width: 425px)
   .hero
-    h1
+    .headline
       top: 35%
       font-size: 2rem
       line-height: 1.3

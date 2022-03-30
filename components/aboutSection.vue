@@ -4,16 +4,17 @@
       <div class="brief">
         <h2>About me.</h2>
         <p>
-          <span itemprop="name">Mehdi Jai</span>, <span itemprop="jobTitle">JavaScript web developer</span>. I started my
-          journey in late 2014 out of curiosity. However, The start of my professional
-          career was in 2019 with building my two majors SaaS; Tabarro3.ma,
-          Autodrive.ma. I have a long experience with JavaScript, NodeJS, and PHP
-          Laravel, with VueJS as a front-end framework. Plus, ElectronJS , VBA
-          and Figma.
+          <span itemprop="name">Mehdi Jai</span>,
+          <span itemprop="jobTitle">JavaScript web developer</span>. I started
+          my journey in late 2014 out of curiosity. However, The start of my
+          professional career was in 2019 with building my two majors SaaS;
+          Tabarro3.ma, Autodrive.ma. I have a long experience with JavaScript,
+          NodeJS, and PHP Laravel, with VueJS as a front-end framework. Plus,
+          ElectronJS , VBA and Figma.
         </p>
       </div>
       <div class="image">
-        <img itemprop="image" src="/profile-picture.png" />
+        <img class="profile-image" itemprop="image" src="/profile-picture.png" />
         <svg
           class="v-line"
           width="2"
@@ -50,54 +51,91 @@
 </template>
 
 <script>
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { CSSRulePlugin } from "gsap/CSSRulePlugin"
+
 export default {
   name: "AboutSection",
+  mounted() {
+    gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)
+    const tl = gsap.timeline({
+      defaults: { duration: 0.7, ease: "power4.inOut" },
+      scrollTrigger: ".about",
+    })
+    tl.from(".brief", {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+      opacity: 0,
+    })
+    .from(
+      CSSRulePlugin.getRule(".about:after"),
+      {
+        cssRule: {
+          y: -50,
+          clipPath: "circle(0.1% at 50% 50%)",
+        },
+      },
+      "-=0.7"
+    )
+    .from(".v-line", {
+      height: 0,
+    }, "-=0.7")
+    .from(".h-line", {
+      width: 0,
+    }, "-=0.6")
+    .from(".profile-image", {
+      clipPath: "circle(0.1% at 100% 100%)"
+    }, "-=0.6")
+  },
 }
 </script>
 
 <style lang="sass">
 .about
-    height: 100vh
-    min-height: 550px
-    display: flex
-    position: relative
-    &::after
-        @include timelineBulb(40%)
-    .container
-        max-width: 1000px
-        margin: 0 auto
-        display: flex
-        align-items: center
-        justify-content: center
-        column-gap: 50px
-        .brief
-          max-width: 400px
-          h2
-            font-size: 2rem
-            margin-bottom: 10px
-          p
-            line-height: 1.4
-            font-weight: 300
-            text-align: justify
-            span
-              font-weight: 600
+  height: 100vh
+  min-height: 550px
+  display: flex
+  position: relative
 
-        .image
-          position: relative
-          width: 400px
-          height: 470px
-          img
-              width: 100%
-              height: 100%
-              object-fit: cover
-        .v-line
-            position: absolute
-            right: 0
-            bottom: -50px
-        .h-line
-            position: absolute
-            right: -50px
-            bottom: 0
+  .container
+    max-width: 1000px
+    margin: 0 auto
+    display: flex
+    align-items: center
+    justify-content: center
+    column-gap: 50px
+    .brief
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%)
+      max-width: 400px
+      h2
+        font-size: 2rem
+        margin-bottom: 10px
+      p
+        line-height: 1.4
+        font-weight: 300
+        text-align: justify
+        span
+          font-weight: 600
+
+    .image
+      position: relative
+      width: 400px
+      height: 470px
+      .profile-image
+        clip-path: circle(141.4% at 100% 100%)
+        width: 100%
+        height: 100%
+        object-fit: cover
+      .v-line
+        position: absolute
+        right: 0
+        bottom: -50px
+      .h-line
+        position: absolute
+        right: -50px
+        bottom: 0
+  &::after
+    @include timelineBulb(40%)
 
 @media (max-width: 1027px)
   .about
@@ -107,12 +145,12 @@ export default {
       .image
         width: 300px
         .v-line
-            bottom: -20px
-            height: 300px
+          bottom: -20px
+          height: 300px
         .h-line
-            right: -20px
-            bottom: 0
-            width: 350px
+          right: -20px
+          bottom: 0
+          width: 350px
 
 @media (max-width: 1027px)
   .about
@@ -129,11 +167,11 @@ export default {
         opacity: 0.5
         right: 50px
         .v-line
-            bottom: -20px
-            height: 300px
+          bottom: -20px
+          height: 300px
         .h-line
-            right: -20px
-            width: 350px
+          right: -20px
+          width: 350px
 
 @media (max-width: 753px)
   .about
@@ -149,9 +187,9 @@ export default {
         right: 50px
         bottom: 100px
         .v-line
-            height: 250px
+          height: 250px
         .h-line
-            width: 250px
+          width: 250px
 
 @media (max-width: 543px)
   .about
@@ -171,9 +209,9 @@ export default {
         right: 50px
         bottom: 50px
         .v-line
-            height: 250px
+          height: 250px
         .h-line
-            width: 250px
+          width: 250px
 
 @media (max-width: 320px)
   .about

@@ -1,7 +1,7 @@
 <template>
   <section class="projects">
     <div class="container">
-      <h2>Projects I built.</h2>
+      <h2 class="projects-title">Projects I built.</h2>
       <div class="grid">
         <template v-for="project in projects">
           <ProjectCard :key="project.id" :project="project" />
@@ -12,11 +12,38 @@
 </template>
 
 <script>
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { CSSRulePlugin } from "gsap/CSSRulePlugin"
 import { mapGetters } from "vuex"
 export default {
   name: "ProjectsSection",
   computed: {
     ...mapGetters({ projects: "getProjects" }),
+  },
+  mounted() {
+    gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)
+    const tl = gsap.timeline({
+      defaults: { duration: 0.7, ease: "power4.inOut" },
+      scrollTrigger: ".projects",
+    })
+    tl.from(".projects-title", {
+      clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
+    })
+    .from(
+      CSSRulePlugin.getRule(".projects:after"),
+      {
+        cssRule: {
+          y: -50,
+          clipPath: "circle(0.1% at 50% 50%)",
+        },
+      },
+      "-=0.7"
+    )
+    .from(".project-card", {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+      stagger: 0.2
+    }, "-=0.7")
   },
 }
 </script>
@@ -31,7 +58,8 @@ export default {
     max-width: 1000px
     margin: 0 auto
     padding: 50px !important
-    h2
+    .projects-title
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%)
       font-size: 2.5rem
       margin-bottom: 50px
     .grid
@@ -50,6 +78,8 @@ export default {
 @media (max-width: 816px)
   .projects
     .container
+      .projects-title
+        font-size: 2rem
       .grid
         grid-template-columns: repeat(2, minmax(0, 1fr))
 

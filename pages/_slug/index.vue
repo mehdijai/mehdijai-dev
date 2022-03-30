@@ -2,9 +2,9 @@
   <div>
     <div itemscope itemtype="https://schema.org/Article" class="project-wrapper">
       <header class="project-header">
-        <h1 itemprop="headline">Project: {{ project.title }}</h1>
-        <span itemprop="keywords" class="hidden">{{tags.map((t) => t.name).join(',')}}</span>
-        <span itemid="publisher">Mehdi Jai</span>
+        <h1 class="project-title" itemprop="headline">Project: {{ project.title }}</h1>
+        <span itemprop="keywords" class="hidden">{{project.tags.map((t) => t.name).join(',')}}</span>
+        <span itemid="publisher" class="hidden">Mehdi Jai</span>
         <div class="tags">
           <template v-for="tag in project.tags">
             <CategoryTag :key="'tag-' + tag.id" :tag="tag" />
@@ -30,6 +30,9 @@
 <script>
 import DOMPurify from "dompurify"
 import { marked } from "marked"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { CSSRulePlugin } from "gsap/CSSRulePlugin"
 
 marked.setOptions({
   breaks: true,
@@ -100,6 +103,38 @@ export default {
   created() {
     this.getProjectData()
   },
+  mounted() {
+    gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)
+    const tl = gsap.timeline({
+      defaults: { duration: 0.7, ease: "power4.inOut" },
+      scrollTrigger: ".project-wrapper",
+    })
+    tl.from(".project-title", {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+    })
+    .from(
+        CSSRulePlugin.getRule(".project-wrapper:after"),
+        {
+          cssRule: {
+            y: -50,
+            clipPath: "circle(0.1% at 50% 50%)",
+          },
+        },
+        "-=0.7"
+      )
+    .from(".tag", {
+      clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+      stagger: 0.1
+    }, "-=0.6")
+    .from(".project-body > h2, .description", {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+      stagger: 0.1
+    }, "-=0.7")
+    .from(".gallery > .image", {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+      stagger: 0.1
+    }, "-=0.6")
+  },
   methods: {
     getProjectData() {
       this.project = this.$store.getters.getProjects.find(
@@ -142,6 +177,7 @@ export default {
       return render
     },
   },
+  
 }
 </script>
 
@@ -156,7 +192,8 @@ export default {
     margin: 0 auto
     margin-top: 100px
     text-align: center
-    h1
+    .project-title
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
       font-size: 3rem
     .hidden
       display: none
@@ -173,8 +210,10 @@ export default {
     margin: 50px auto
     text-align: center
     h2
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
       font-size: 2rem
     .description
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
       margin: 0 auto
       max-width: 500px
       padding: 20px
@@ -190,6 +229,7 @@ export default {
     .gallery
       margin: 50px 0
       .image
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
         display: block
         width: 80%
         height: 600px
@@ -199,7 +239,7 @@ export default {
 @media (max-width: 557px)
   .project-wrapper
     .project-header
-      h1
+      .project-title
         font-size: 2.5rem
     .project-body
       h2

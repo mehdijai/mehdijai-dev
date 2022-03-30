@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form class="contact-form">
     <div class="group">
       <input type="text" placeholder="Full Name" />
       <input type="text" placeholder="Email" />
@@ -23,7 +23,8 @@ export default {
 </script>
 
 <style lang="sass">
-form
+.contact-form
+    clip-path: circle(150% at 50% 0)
     margin: 0 auto
     .group
         width: 100%
