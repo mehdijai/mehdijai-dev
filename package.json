@@ -1,6 +1,10 @@
 {
   "name": "mehdijai-dev",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x",
+    "npm": "6.x"
+  },
   "private": true,
   "scripts": {
     "dev": "nuxt",
