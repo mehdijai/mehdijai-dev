@@ -7,7 +7,9 @@
         opportunity.
       </p>
       <div itemscope itemtype="https://schema.org/Person" class="contact-info">
-        <a itemprop="email" href="mailto:contact@mehdijai.me">contact@mehdijai.me</a>
+        <a itemprop="email" href="mailto:contact@mehdijai.me"
+          >contact@mehdijai.me</a
+        >
         <a itemprop="telephone" href="tel:+212766710036">+212 7 66 71 00 36</a>
       </div>
     </header>
@@ -15,13 +17,13 @@
       <ContactForm />
     </div>
     <div class="sm">
-      <a href="#">
+      <a href="https://github.com/mehdijai">
         <img src="/github.svg" alt="GitHub" />
       </a>
-      <a href="#">
+      <a href="https://linkedin.com/in/mehdijai">
         <img src="/linkedin.svg" alt="LinkedIn" />
       </a>
-      <a href="#">
+      <a href="https://twitter.com/jai_mehdi">
         <img src="/twitter.svg" alt="Twitter" />
       </a>
     </div>
@@ -43,31 +45,47 @@ export default {
     tl.from(".contact-title", {
       clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
     })
-    .from(
-      CSSRulePlugin.getRule(".contact:after"),
-      {
-        cssRule: {
-          y: -50,
-          clipPath: "circle(0.1% at 50% 50%)",
+      .from(
+        CSSRulePlugin.getRule(".contact:after"),
+        {
+          cssRule: {
+            y: -50,
+            clipPath: "circle(0.1% at 50% 50%)",
+          },
         },
-      },
-      "-=0.7"
-    )
-    .from(".contact-brief", {
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-    }, "-=0.5")
-    .from(".contact-info > a", {
-      clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
-      stagger: 0.2
-    }, "-=0.4")
-    .from(".contact-form", {
-      clipPath: "circle(0.1% at 50% 0)",
-    }, "-=0.5")
-    .from(".sm > a", {
-      opacity: 0,
-      y: -5,
-      stagger: 0.2
-    }, "-=0.4")
+        "-=0.7"
+      )
+      .from(
+        ".contact-brief",
+        {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        },
+        "-=0.5"
+      )
+      .from(
+        ".contact-info > a",
+        {
+          clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
+          stagger: 0.2,
+        },
+        "-=0.4"
+      )
+      .from(
+        ".contact-form",
+        {
+          clipPath: "circle(0.1% at 50% 0)",
+        },
+        "-=0.5"
+      )
+      .from(
+        ".sm > a",
+        {
+          opacity: 0,
+          y: -5,
+          stagger: 0.2,
+        },
+        "-=0.4"
+      )
   },
 }
 </script>

@@ -53,7 +53,7 @@ export default {
   position: absolute
   width: 2px
   background: $gray-light
-  height: calc(100% - 50px - 60px - 60px - 80px)
+  height: calc(100% - 50px - 60px - 60px - 100px)
   top: 100px
   left: 40px
 

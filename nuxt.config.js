@@ -1,3 +1,8 @@
+import axios from "axios"
+const isDev = process.env.NODE_ENV !== "production"
+const hostPath = isDev ? "http://localhost:3000" : "https://mehdijai-dev.herokuapp.com"
+const adminPath = isDev ? "http://localhost:1337" : "https://mehdijai-admin.herokuapp.com"
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -63,14 +68,35 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/axios"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/sitemap", "@nuxtjs/robots"],
+
+  robots: {
+    UserAgent: "*",
+    Allow: "/",
+    Sitemap: hostPath + "/sitemap.xml"
+  },
+
+  sitemap: {
+    hostname: hostPath,
+    gzip: true,
+    defaults: {
+      changefreq: "monthly",
+      priority: 1,
+      lastmod: new Date(),
+    },
+    routes: async () => {
+      const { data } = await axios.get(adminPath + "/api/projects")
+      const routes = data.data.map((project) => `/${project.attributes.slug}`)
+      return ["/", ...routes]
+    },
+  },
 
   axios: {
-    baseURL: process.env.API_URL || "https://mehdijai-admin.herokuapp.com/api",
+    baseURL: adminPath + "/api"
   },
 
   publicRuntimeConfig: {
-    backendUrl: process.env.BACKEND_URL || "https://mehdijai-admin.herokuapp.com",
+    backendUrl: adminPath
   },
 
   styleResources: {

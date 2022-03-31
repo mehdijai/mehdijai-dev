@@ -32,6 +32,11 @@ button
   text-decoration: none
   font-size: 0.9rem
   cursor: pointer
+  &:disabled
+    cursor: not-allowed !important
+    background: lighten($black, 5)
+    color: lighten($black, 10)
+    opacity: 0.5
   
 .extLink
   color: $primary-light

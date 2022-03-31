@@ -12,8 +12,7 @@ export default async function (to, from, savedPosition) {
     }
     if ("scrollBehavior" in document.documentElement.style) {
       return window.scrollTo({
-        top: el.getBoundingClientRect().top + window.scrollY,
-        behavior: "smooth",
+        top: el.getBoundingClientRect().top + window.scrollY
       })
     } else {
       return window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY)
