@@ -1,7 +1,6 @@
 <template>
   <div>
     <div v-if="$nuxt.isOffline">You are offline</div>
-    <div class="v-timeline"></div>
     <NavBar />
     <Nuxt />
     <button id="fabButton" class="fab" @click="scrollUp">
@@ -45,23 +44,6 @@ export default {
 </script>
 
 <style lang="sass">
-.v-timeline
-  position: absolute
-  width: 2px
-  background: $gray-light
-  height: calc(100% - 50px - 60px - 60px - 80px)
-  top: 100px
-  left: 40px
-
-@media (max-width: 582px)
-  .v-timeline
-    left: 30px
-
-@media (max-width: 464px)
-  .v-timeline
-    left: 20px
-    width: 1px
-
 .fab
   display: none
   position: fixed

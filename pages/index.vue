@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="v-timeline"></div>
     <HeroSection />
     <AboutSection id="about" />
     <ProjectsSection id="projects" />
@@ -46,3 +47,22 @@ export default {
   },
 }
 </script>
+
+<style lang="sass">
+.v-timeline
+  position: absolute
+  width: 2px
+  background: $gray-light
+  height: calc(100% - 50px - 60px - 60px - 80px)
+  top: 100px
+  left: 40px
+
+@media (max-width: 582px)
+  .v-timeline
+    left: 30px
+
+@media (max-width: 464px)
+  .v-timeline
+    left: 20px
+    width: 1px
+</style>

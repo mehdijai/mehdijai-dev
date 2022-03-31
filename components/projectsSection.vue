@@ -15,11 +15,15 @@
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { CSSRulePlugin } from "gsap/CSSRulePlugin"
-import { mapGetters } from "vuex"
 export default {
   name: "ProjectsSection",
-  computed: {
-    ...mapGetters({ projects: "getProjects" }),
+  data() {
+    return {
+      projects: []
+    }
+  },
+  async fetch() {
+    this.projects = (await this.$axios.$get("/projects?populate=*")).data
   },
   mounted() {
     gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)
@@ -30,20 +34,24 @@ export default {
     tl.from(".projects-title", {
       clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
     })
-    .from(
-      CSSRulePlugin.getRule(".projects:after"),
-      {
-        cssRule: {
-          y: -50,
-          clipPath: "circle(0.1% at 50% 50%)",
+      .from(
+        CSSRulePlugin.getRule(".projects:after"),
+        {
+          cssRule: {
+            y: -50,
+            clipPath: "circle(0.1% at 50% 50%)",
+          },
         },
-      },
-      "-=0.7"
-    )
-    .from(".project-card", {
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-      stagger: 0.2
-    }, "-=0.7")
+        "-=0.7"
+      )
+      .from(
+        ".project-card",
+        {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+          stagger: 0.2,
+        },
+        "-=0.7"
+      )
   },
 }
 </script>

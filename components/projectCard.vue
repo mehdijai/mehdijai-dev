@@ -5,16 +5,23 @@
     class="project-card"
     @mouseenter="hover = project.id"
     @mouseleave="hover = null"
-    @click="$router.push('/' + project.slug)"
+    @click="$router.push({path: '/' + project.attributes.slug})"
   >
-    <div class="thumbnail"></div>
+    <div class="thumbnail">
+      <img
+        :src="
+          $config.backendUrl + project.attributes.thumbnail.data.attributes.url
+        "
+        :alt="project.attributes.thumbnail.data.attributes.alternativeText"
+      />
+    </div>
     <Transition name="slide-info">
       <div v-if="hover === project.id" class="info-bar">
         <div class="wrapper">
-          <h3 itemprop="about">{{ project.title }}</h3>
+          <h3 itemprop="about">{{ project.attributes.title }}</h3>
           <div class="tags">
-            <template v-for="tag in project.tags">
-              <CategoryTag :key="'tag-' + tag.id" :tag="tag" />
+            <template v-for="tag in project.attributes.tags.data">
+              <CategoryTag :key="'tag-' + tag.id" :tag="tag.attributes" />
             </template>
           </div>
         </div>
@@ -51,7 +58,14 @@ export default {
     display: block
     width: 100%
     height: 100%
-    background: #cacaca
+    background: $black-light
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+      transition: 0.2s ease-in-out
+      &:hover
+        opacity: 0.4
   .info-bar
     background: #fff
     position: absolute

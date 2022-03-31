@@ -4,7 +4,7 @@ export default {
     title: "Mehdi Jai - JavaScript Fullstack developer.",
     htmlAttrs: {
       lang: "en",
-      prefix: "og:http://ogp.me/ns/article"
+      prefix: "og:http://ogp.me/ns/article",
     },
     meta: [
       { charset: "utf-8" },
@@ -63,7 +63,15 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ["@nuxtjs/axios"],
+
+  axios: {
+    baseURL: process.env.API_URL || "https://mehdijai-admin.herokuapp.com/api",
+  },
+
+  publicRuntimeConfig: {
+    backendUrl: process.env.BACKEND_URL || "https://mehdijai-admin.herokuapp.com",
+  },
 
   styleResources: {
     sass: ["./assets/sass/*.sass"],
@@ -76,5 +84,6 @@ export default {
         implementation: require("sass"),
       },
     },
+    transpile: ["gsap"],
   },
 }

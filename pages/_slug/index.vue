@@ -1,27 +1,43 @@
 <template>
   <div>
-    <div itemscope itemtype="https://schema.org/Article" class="project-wrapper">
+    <div v-if="$fetchState.pending" class="alert pending">
+      <h2>Fetching mountains...</h2>
+    </div>
+    <div v-else-if="$fetchState.error" class="alert error">
+      <h2>An error occurred :(</h2>
+      <button @click="$fetch">
+        <span class="material-icons"> refresh </span>
+      </button>
+      <nuxt-link :to="{ path: '/' }" class="extLink">Home</nuxt-link>
+    </div>
+    <div
+      v-else
+      itemscope
+      itemtype="https://schema.org/Article"
+      class="project-wrapper"
+    >
       <header class="project-header">
-        <h1 class="project-title" itemprop="headline">Project: {{ project.title }}</h1>
-        <span itemprop="keywords" class="hidden">{{project.tags.map((t) => t.name).join(',')}}</span>
+        <h1 class="project-title" itemprop="headline">
+          Project: {{ project.title }}
+        </h1>
+        <span itemprop="keywords" class="hidden">{{
+          project.tags.data.map((t) => t.attributes.title).join(",")
+        }}</span>
         <span itemid="publisher" class="hidden">Mehdi Jai</span>
         <div class="tags">
-          <template v-for="tag in project.tags">
-            <CategoryTag :key="'tag-' + tag.id" :tag="tag" />
+          <template v-for="tag in project.tags.data">
+            <CategoryTag :key="'tag-' + tag.id" :tag="tag.attributes" />
           </template>
         </div>
       </header>
       <article itemprop="articleSection" class="project-body">
         <h2>Description</h2>
         <!-- eslint-disable vue/no-v-html -->
-        <div itemprop="backstory" class="description" v-html="description"></div>
-        <div class="gallery">
-          <template v-for="i in 6">
-            <div :key="'image-' + i" class="image">
-              <img itemprop="image" src="" alt="">
-            </div>
-          </template>
-        </div>
+        <div
+          itemprop="backstory"
+          class="description"
+          v-html="description"
+        ></div>
       </article>
     </div>
   </div>
@@ -45,46 +61,61 @@ export default {
       project: null,
     }
   },
+  async fetch() {
+    this.project = await fetch(
+      this.$config.backendUrl +
+        "/api/projects?populate=*&filters[slug]=" +
+        this.$route.params.slug
+    )
+      .then((res) => res.json())
+      .then((json) => json.data[0].attributes)
+  },
   head() {
-    return {
-      title: this.project.title + " - Mehdi Jai",
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: this.render_plain(this.project.description),
-        },
-        {
-          property: "og:title",
-          content: this.project.title,
-          template: (chunk) => `${chunk} - Mehdi Jai`,
-          vmid: "og:title",
-        },
-        {
-          property: "og:type",
-          content: "article",
-        },
-        {
-          property: "og:image",
-          content: this.project.thumbnail,
-        },
-        {
-          property: "og:image:alt",
-          content: this.project.title,
-        },
-        {
-          property: "og:url",
-          content: this.$route.path,
-        },
-        {
-          property: "article:author",
-          content: "Mehdi Jai",
-        },
-        {
-          property: "article:section",
-          content: "Global",
-        },
-      ],
+    if (this.project) {
+      return {
+        title: this.project.title + " - Mehdi Jai",
+        meta: [
+          {
+            hid: "description",
+            name: "description",
+            content: this.render_plain(this.project.description),
+          },
+          {
+            property: "og:title",
+            content: this.project.title,
+            template: (chunk) => `${chunk} - Mehdi Jai`,
+            vmid: "og:title",
+          },
+          {
+            property: "og:type",
+            content: "article",
+          },
+          {
+            property: "og:image",
+            content:
+              this.$config.backendUrl +
+              this.project.thumbnail.data.attributes.url,
+          },
+          {
+            property: "og:image:alt",
+            content: this.project.title,
+          },
+          {
+            property: "og:url",
+            content: this.$route.path,
+          },
+          {
+            property: "article:author",
+            content: "Mehdi Jai",
+          },
+          {
+            property: "article:section",
+            content: "Global",
+          },
+        ],
+      }
+    } else {
+      return {}
     }
   },
   computed: {
@@ -100,9 +131,6 @@ export default {
       return ""
     },
   },
-  created() {
-    this.getProjectData()
-  },
   mounted() {
     gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)
     const tl = gsap.timeline({
@@ -112,7 +140,7 @@ export default {
     tl.from(".project-title", {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
     })
-    .from(
+      .from(
         CSSRulePlugin.getRule(".project-wrapper:after"),
         {
           cssRule: {
@@ -122,25 +150,24 @@ export default {
         },
         "-=0.7"
       )
-    .from(".tag", {
-      clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-      stagger: 0.1
-    }, "-=0.6")
-    .from(".project-body > h2, .description", {
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-      stagger: 0.1
-    }, "-=0.7")
-    .from(".gallery > .image", {
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-      stagger: 0.1
-    }, "-=0.6")
+      .from(
+        ".tag",
+        {
+          clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+          stagger: 0.1,
+        },
+        "-=0.6"
+      )
+      .from(
+        ".project-body > h2, .description",
+        {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+          stagger: 0.1,
+        },
+        "-=0.7"
+      )
   },
   methods: {
-    getProjectData() {
-      this.project = this.$store.getters.getProjects.find(
-        (p) => p.slug === this.$route.params.slug
-      )
-    },
     htmlEscapeToText(text) {
       return text.replace(/&#[0-9]*;|&amp;/g, function (escapeCode) {
         if (escapeCode.match(/amp/)) {
@@ -177,16 +204,40 @@ export default {
       return render
     },
   },
-  
 }
 </script>
 
 <style lang="sass">
+.alert
+  height: 100vh
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  row-gap: 20px
+  text-align: center
+  &.pending
+    h2
+      font-size: 2rem
+      color: $gray-light
+  &.error
+    button
+      background: $black-light
+      transition: 0.2s ease
+      span
+        color: $gray-light
+        display: flex
+        align-items: center
+        justify-content: center
+      &:hover
+        background: lighten($black-light, 5)
+    h2
+      font-size: 2rem
+      color: $error
 .project-wrapper
   position: relative
   padding: 20px
-  &::after
-    @include timelineBulb(130px)
+  min-height: calc(100vh - 57px)
   .project-header
     max-width: 1000px
     margin: 0 auto
@@ -215,8 +266,11 @@ export default {
     .description
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
       margin: 0 auto
-      max-width: 500px
       padding: 20px
+      text-align: left
+      h1
+        font-size: 2rem
+        line-height: 2
       a
         @extend .extLink
       p
@@ -225,16 +279,8 @@ export default {
         font-weight: 300
         text-align: justify
         margin-bottom: 10px
-
-    .gallery
-      margin: 50px 0
-      .image
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
-        display: block
-        width: 80%
-        height: 600px
-        background: #cacaca
-        margin: 10px auto
+      img
+        width: 100%
 
 @media (max-width: 557px)
   .project-wrapper

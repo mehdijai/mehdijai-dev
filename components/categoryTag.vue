@@ -2,7 +2,7 @@
   <span
     class="tag"
     :style="`background-color: ${tag.bg}; color: ${tag.color}`"
-    >{{ tag.name }}</span
+    >{{ tag.title }}</span
   >
 </template>
 
@@ -26,4 +26,9 @@ export default {
     font-weight: 600
     font-size: 0.8rem
     letter-spacing: 0.2px
+    user-select: none
+    cursor: pointer
+    transition: opacity 0.2s ease-in
+    &:hover
+      opacity: 0.7
 </style>

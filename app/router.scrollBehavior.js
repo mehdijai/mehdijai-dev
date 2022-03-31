@@ -1,9 +1,13 @@
-export default function (to, from, savedPosition) {
+export default async function (to, from, savedPosition) {
+  if (savedPosition) {
+    return savedPosition
+  }
   if (to.hash) {
-    const el = document.querySelector(to.hash)
+    const el = await findEl(to.hash)
     if (el === null) {
       return {
         el: to.hash,
+        behavior: "smooth",
       }
     }
     if ("scrollBehavior" in document.documentElement.style) {
@@ -16,4 +20,18 @@ export default function (to, from, savedPosition) {
     }
   }
   return { x: 0, y: 0, behavior: "smooth" }
+}
+
+const findEl = (hash, x) => {
+  return (
+    document.querySelector(hash) ||
+    new Promise((resolve, reject) => {
+      if (x > 50) {
+        return resolve()
+      }
+      setTimeout(() => {
+        resolve(findEl(hash, ++x || 1))
+      }, 100)
+    })
+  )
 }
