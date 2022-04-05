@@ -7,8 +7,8 @@
         opportunity.
       </p>
       <div itemscope itemtype="https://schema.org/Person" class="contact-info">
-        <a itemprop="email" href="mailto:contact@mehdijai.me"
-          >contact@mehdijai.me</a
+        <a itemprop="email" href="mailto:contact@mehdijai.com"
+          >contact@mehdijai.com</a
         >
         <a itemprop="telephone" href="tel:+212766710036">+212 7 66 71 00 36</a>
       </div>

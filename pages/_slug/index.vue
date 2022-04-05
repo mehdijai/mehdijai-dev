@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="$fetchState.pending" class="alert pending">
-      <h2>Fetching mountains...</h2>
+      <h2>Fetching project...</h2>
     </div>
     <div v-else-if="$fetchState.error" class="alert error">
       <h2>An error occurred :(</h2>
@@ -36,7 +36,7 @@
         <div
           itemprop="backstory"
           class="description"
-          v-html="description"
+          v-html="$md.render(project.description)"
         ></div>
       </article>
     </div>
@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import DOMPurify from "dompurify"
 import { marked } from "marked"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -117,19 +116,6 @@ export default {
     } else {
       return {}
     }
-  },
-  computed: {
-    description() {
-      if (process.browser) {
-        if (this.project.description) {
-          return DOMPurify.sanitize(marked.parse(this.project.description), {
-            USE_PROFILES: { html: true },
-          })
-        }
-      }
-
-      return ""
-    },
   },
   mounted() {
     gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)

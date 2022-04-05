@@ -4,18 +4,25 @@
       <nuxt-link to="/" class="logo">
         <svg viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_10_146)">
-            <path d="M27.2837 0L16.8076 10.3365L6.33951 0H0V23.3959L6.33951 29.6557V8.84976L16.8076 19.1941L27.2837 8.84976V20.8059L16.8076 31.1424V27.4804L10.4681 21.2207V33.7402L16.8076 40L33.5439 23.4742L33.6232 23.3959V0H27.2837Z" fill="#FAFAFA"/>
-            <path d="M33.6232 39.9922V27.8247L21.2928 39.9922H33.6232Z" fill="#FAFAFA"/>
+            <path
+              d="M27.2837 0L16.8076 10.3365L6.33951 0H0V23.3959L6.33951 29.6557V8.84976L16.8076 19.1941L27.2837 8.84976V20.8059L16.8076 31.1424V27.4804L10.4681 21.2207V33.7402L16.8076 40L33.5439 23.4742L33.6232 23.3959V0H27.2837Z"
+              fill="#FAFAFA"
+            />
+            <path
+              d="M33.6232 39.9922V27.8247L21.2928 39.9922H33.6232Z"
+              fill="#FAFAFA"
+            />
           </g>
           <defs>
             <clipPath id="clip0_10_146">
-              <rect width="33.6232" height="40" fill="white"/>
+              <rect width="33.6232" height="40" fill="white" />
             </clipPath>
           </defs>
         </svg>
       </nuxt-link>
       <template v-for="(link, index) in links">
         <nuxt-link
+          v-if="!link.isCTA"
           :key="index"
           class="link"
           :class="getClass[index]"
@@ -23,8 +30,15 @@
             path: link.link.includes('#') ? '/' : link.link,
             hash: link.link.includes('#') ? link.link.replace('/', '') : null,
           }"
-          >{{ link.title }}</nuxt-link
-        >
+          >{{ link.title }}</nuxt-link>
+          <a
+          v-else
+          :key="index"
+          class="link"
+          :class="getClass[index]"
+          :href="link.link"
+          target="_blank"
+          >{{ link.title }}</a>
       </template>
       <button
         class="toggleMenu"
@@ -75,12 +89,17 @@ export default {
         },
         {
           title: "Resume",
-          link: "/resume.pdf",
+          link: "#",
           isCTA: true,
         },
       ],
       currentHash: null,
     }
+  },
+  async fetch() {
+    const url = (await this.$axios.$get("/resume?populate=*")).data.attributes
+      .file.data.attributes.url
+    this.links[this.links.length - 1].link = this.$config.backendUrl + url
   },
   computed: {
     getClass() {
@@ -109,12 +128,15 @@ export default {
     tl.from("nav", {
       clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
       opacity: 0,
-    })
-    .from(".container > a", {
-      x: -5,
-      opacity: 0,
-      stagger: 0.1
-    }, "-=0.3")
+    }).from(
+      ".container > a",
+      {
+        x: -5,
+        opacity: 0,
+        stagger: 0.1,
+      },
+      "-=0.3"
+    )
   },
 }
 </script>

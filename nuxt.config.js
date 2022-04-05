@@ -1,7 +1,9 @@
 import axios from "axios"
 const isDev = process.env.NODE_ENV !== "production"
-const hostPath = isDev ? "http://localhost:3000" : "https://mehdijai-dev.herokuapp.com"
-const adminPath = isDev ? "http://localhost:1337" : "https://mehdijai-admin.herokuapp.com"
+const hostPath = isDev
+  ? "http://localhost:3000"
+  : "https://mehdijai-dev.herokuapp.com"
+const adminPath = "https://mehdijai-admin-u6sre.ondigitalocean.app"
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -68,12 +70,25 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/axios", "@nuxtjs/sitemap", "@nuxtjs/robots"],
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxtjs/markdownit",
+    "@nuxtjs/sitemap",
+    "@nuxtjs/robots",
+  ],
+
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    injected: true,
+    // use: ['markdown-it-div', 'markdown-it-attrs'],
+  },
 
   robots: {
     UserAgent: "*",
     Allow: "/",
-    Sitemap: hostPath + "/sitemap.xml"
+    Sitemap: hostPath + "/sitemap.xml",
   },
 
   sitemap: {
@@ -92,11 +107,11 @@ export default {
   },
 
   axios: {
-    baseURL: adminPath + "/api"
+    baseURL: adminPath + "/api",
   },
 
   publicRuntimeConfig: {
-    backendUrl: adminPath
+    backendUrl: adminPath,
   },
 
   styleResources: {
