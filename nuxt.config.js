@@ -1,9 +1,7 @@
 import axios from "axios"
-const isDev = process.env.NODE_ENV !== "production"
-const hostPath = isDev
-  ? "http://localhost:3000"
-  : "https://mehdijai-dev.herokuapp.com"
-const adminPath = "https://mehdijai-admin-u6sre.ondigitalocean.app"
+const hostPath = process.env.CLIENT_PATH || "https://mehdijai-dev.herokuapp.com"
+const adminPath =
+  process.env.ADMIN_PATH || "https://mehdijai-admin-u6sre.ondigitalocean.app"
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -78,7 +76,7 @@ export default {
   ],
 
   markdownit: {
-    preset: 'default',
+    preset: "default",
     linkify: true,
     breaks: true,
     injected: true,
