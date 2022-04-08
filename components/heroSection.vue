@@ -1,7 +1,7 @@
 <template>
   <section class="hero">
     <h1 class="headline">
-      Mehdi Jai, <span>JavaScript Fullstack developer</span>
+      Mehdi Jai, <span>JavaScript Frontend developer</span>
     </h1>
     <div class="specialties row-1">
       <span>HTML5</span>

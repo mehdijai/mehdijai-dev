@@ -5,7 +5,7 @@
         <h2>About me.</h2>
         <p>
           <span itemprop="name">Mehdi Jai</span>,
-          <span itemprop="jobTitle">JavaScript web developer</span>. I started
+          <span itemprop="jobTitle">Frontend web developer</span>. I started
           my journey in late 2014 out of curiosity. However, The start of my
           professional career was in 2019 with building my two majors SaaS;
           Tabarro3.ma, Autodrive.ma. I have a long experience with JavaScript,

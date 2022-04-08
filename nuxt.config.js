@@ -6,7 +6,7 @@ const adminPath =
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Mehdi Jai - JavaScript Fullstack developer.",
+    title: "Mehdi Jai - JavaScript Frontend developer.",
     htmlAttrs: {
       lang: "en",
       prefix: "og:http://ogp.me/ns/article",
@@ -18,7 +18,7 @@ export default {
         hid: "description",
         name: "description",
         content:
-          "Mehdi Jai, JavaScript Fullstack developer based in Morocco. I create SaaS, Web Applications and Desktop Application With JavaScript and VueJS.",
+          "Mehdi Jai, JavaScript Frontend developer based in Morocco. I create SaaS, Web Applications and Desktop Application With JavaScript and VueJS.",
       },
       { name: "format-detection", content: "telephone=no" },
       {
