@@ -93,6 +93,7 @@ export default {
         .catch((err) => {
           this.sending = false
           this.error = err.message
+          console.error(err);
         })
         .finally(() => {
           setTimeout(() => {

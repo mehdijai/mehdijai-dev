@@ -1,4 +1,4 @@
-const hostPath = process.env.CLIENT_PATH || "https://mehdijai.com"
+const hostPath = process.env.CLIENT_PATH || "http://mehdijai.com"
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -88,9 +88,6 @@ export default {
     ],
   ],
 
-  axios: {
-    baseURL: hostPath,
-  },
 
   markdownit: {
     preset: "default",
