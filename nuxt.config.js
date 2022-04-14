@@ -1,4 +1,4 @@
-const hostPath = process.env.CLIENT_PATH || "http://mehdijai.com"
+const hostPath = process.env.CLIENT_PATH || "https://mehdijai-dev.herokuapp.com"
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -79,6 +79,7 @@ export default {
         smtp: {
           host: "mail.privateemail.com",
           port: 465,
+          secured: true,
           auth: {
             user: "contact@mehdijai.com",
             pass: "MehD1_j@i_coM@Dm1N",
@@ -88,6 +89,9 @@ export default {
     ],
   ],
 
+  axios: {
+    baseURL: process.env.NODE_ENV === 'production' ? hostPath : "http://localhost:3000",
+  },
 
   markdownit: {
     preset: "default",
