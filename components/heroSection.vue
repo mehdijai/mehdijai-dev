@@ -11,7 +11,7 @@
       <span>GSAP</span>
     </div>
     <div class="specialties row-2">
-      <span>ES6</span>
+      <span>Laravel</span>
       <span>VueJS</span>
       <span>NuxtJS</span>
       <span>NodeJS</span>

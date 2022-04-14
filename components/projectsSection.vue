@@ -19,11 +19,11 @@ export default {
   name: "ProjectsSection",
   data() {
     return {
-      projects: []
+      projects: [],
     }
   },
-  async fetch() {
-    this.projects = (await this.$axios.$get("/projects?populate=*")).data
+  fetch() {
+    this.projects = this.$store.getters.getProjects
   },
   mounted() {
     gsap.registerPlugin(ScrollTrigger, CSSRulePlugin)

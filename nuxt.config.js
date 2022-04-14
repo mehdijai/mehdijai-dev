@@ -124,5 +124,10 @@ export default {
       },
     },
     transpile: ["gsap"],
+    extend(config, { isClient, loaders: { vue } }) {
+      if (isClient) {
+        vue.transformAssetUrls.video = ["src", "poster"]
+      }
+    },
   },
 }

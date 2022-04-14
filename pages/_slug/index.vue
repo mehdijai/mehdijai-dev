@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="$fetchState.pending" class="alert pending">
+    <!-- <div v-if="$fetchState.pending" class="alert pending">
       <h2>Fetching project...</h2>
     </div>
     <div v-else-if="$fetchState.error" class="alert error">
@@ -9,9 +9,8 @@
         <span class="material-icons"> refresh </span>
       </button>
       <nuxt-link :to="{ path: '/' }" class="extLink">Home</nuxt-link>
-    </div>
+    </div> -->
     <div
-      v-else
       itemscope
       itemtype="https://schema.org/Article"
       class="project-wrapper"
@@ -21,12 +20,12 @@
           Project: {{ project.title }}
         </h1>
         <span itemprop="keywords" class="hidden">{{
-          project.tags.data.map((t) => t.attributes.title).join(",")
+          project.tags.map((t) => t.title).join(",")
         }}</span>
         <span itemid="publisher" class="hidden">Mehdi Jai</span>
         <div class="tags">
-          <template v-for="tag in project.tags.data">
-            <CategoryTag :key="'tag-' + tag.id" :tag="tag.attributes" />
+          <template v-for="tag in project.tags">
+            <CategoryTag :key="'tag-' + tag.id" :tag="tag" />
           </template>
         </div>
       </header>
@@ -36,7 +35,7 @@
         <div
           itemprop="backstory"
           class="description"
-          v-html="$md.render(project.description)"
+          v-html="project.content"
         ></div>
       </article>
     </div>
@@ -60,14 +59,10 @@ export default {
       project: null,
     }
   },
-  async fetch() {
-    this.project = await fetch(
-      this.$config.backendUrl +
-        "/api/projects?populate=*&filters[slug]=" +
-        this.$route.params.slug
+  fetch() {
+    this.project = this.$store.getters.getProjects.find(
+      (p) => (p.slug === this.$route.params.slug)
     )
-      .then((res) => res.json())
-      .then((json) => json.data[0].attributes)
   },
   head() {
     if (this.project) {
@@ -77,7 +72,7 @@ export default {
           {
             hid: "description",
             name: "description",
-            content: this.render_plain(this.project.description),
+            content: this.render_plain(this.project.content),
           },
           {
             property: "og:title",
@@ -91,9 +86,7 @@ export default {
           },
           {
             property: "og:image",
-            content:
-              this.$config.backendUrl +
-              this.project.thumbnail.data.attributes.url,
+            content: this.project.thumbnail,
           },
           {
             property: "og:image:alt",
@@ -257,6 +250,9 @@ export default {
       h1
         font-size: 2rem
         line-height: 2
+      h2
+        font-size: 1.2rem
+        margin-bottom: 5px
       a
         @extend .extLink
       p
@@ -267,6 +263,15 @@ export default {
         margin-bottom: 10px
       img
         width: 100%
+        margin: 10px 0
+      figure
+        display: block
+        margin: 20px 0
+        width: 100%
+      video
+        display: block
+        width: 100%
+        margin: 0 auto
 
 @media (max-width: 557px)
   .project-wrapper

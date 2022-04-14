@@ -1,0 +1,17 @@
+[
+  { "id": 1, "title": "Laravel", "bg": "#F05340", "color": "#ffffff" },
+  { "id": 2, "title": "Livewire", "bg": "#FB70A9", "color": "#4E56A6" },
+  { "id": 3, "title": "Vue", "bg": "#42B883", "color": "#ffffff" },
+  { "id": 4, "title": "Vuetify", "bg": "#7BC6FE", "color": "#1B68C2" },
+  { "id": 5, "title": "SASS", "bg": "#CD6799", "color": "#ffffff" },
+  { "id": 6, "title": "AlpineJS", "bg": "#77C1D2", "color": "#2D3441" },
+  { "id": 7, "title": "ElectronJS", "bg": "#A0EBF9", "color": "#272A37" },
+  { "id": 8, "title": "SQLite", "bg": "#8FD5F7", "color": "#003856" },
+  { "id": 9, "title": "NodeJS", "bg": "#68A063", "color": "#fafafa" },
+  { "id": 10, "title": "ExpressJS", "bg": "#FAFAFA", "color": "#494949" },
+  { "id": 11, "title": "GSAP", "bg": "#88CE02", "color": "#ffffff" },
+  { "id": 12, "title": "Firebase", "bg": "#FB70A9", "color": "#4E56A6" },
+  { "id": 13, "title": "EJS", "bg": "#B4CA65", "color": "#A91E50" },
+  { "id": 14, "title": "Sequelize", "bg": "#275887", "color": "#ffffff" },
+  { "id": 15, "title": "JavaScript", "bg": "#F0DB4F", "color": "#323330" }
+]

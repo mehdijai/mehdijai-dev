@@ -89,18 +89,18 @@ export default {
         },
         {
           title: "Resume",
-          link: "#",
+          link: "/Resume.pdf",
           isCTA: true,
         },
       ],
       currentHash: null,
     }
   },
-  async fetch() {
-    const url = (await this.$axios.$get("/resume?populate=*")).data.attributes
-      .file.data.attributes.url
-    this.links[this.links.length - 1].link = this.$config.backendUrl + url
-  },
+  // async fetch() {
+  //   const url = (await this.$axios.$get("/resume?populate=*")).data.attributes
+  //     .file.data.attributes.url
+  //   this.links[this.links.length - 1].link = this.$config.backendUrl + url
+  // },
   computed: {
     getClass() {
       return this.links.map((link) => {

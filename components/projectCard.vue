@@ -5,23 +5,18 @@
     class="project-card"
     @mouseenter="hover = project.id"
     @mouseleave="hover = null"
-    @click="$router.push({path: '/' + project.attributes.slug})"
+    @click="$router.push({ path: '/' + project.slug })"
   >
     <div class="thumbnail">
-      <img
-        :src="
-          $config.backendUrl + project.attributes.thumbnail.data.attributes.url
-        "
-        :alt="project.attributes.thumbnail.data.attributes.alternativeText"
-      />
+      <img :src="project.thumbnail" :alt="project.title" />
     </div>
     <Transition name="slide-info">
       <div v-if="hover === project.id" class="info-bar">
         <div class="wrapper">
-          <h3 itemprop="about">{{ project.attributes.title }}</h3>
+          <h3 itemprop="about">{{ project.title }}</h3>
           <div class="tags">
-            <template v-for="tag in project.attributes.tags.data">
-              <CategoryTag :key="'tag-' + tag.id" :tag="tag.attributes" />
+            <template v-for="tag in project.tags">
+              <CategoryTag :key="'tag-' + tag.id" :tag="tag" />
             </template>
           </div>
         </div>

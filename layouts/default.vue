@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div v-if="$nuxt.isOffline">You are offline</div>
     <NavBar />
     <Nuxt />
     <button id="fabButton" class="fab" @click="scrollUp">
@@ -16,6 +15,9 @@
 import { gsap } from "gsap"
 export default {
   name: "DefaultLayout",
+  fetch() {
+    this.$store.commit("setProjects")
+  },
   mounted() {
     const fabButton = document.getElementById("fabButton")
 
