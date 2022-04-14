@@ -6,12 +6,6 @@
         I’m currently open for work as JS / VueJS frontend developer
         opportunity.
       </p>
-      <div itemscope itemtype="https://schema.org/Person" class="contact-info">
-        <a itemprop="email" href="mailto:contact@mehdijai.com"
-          >contact@mehdijai.com</a
-        >
-        <a itemprop="telephone" href="tel:+212766710036">+212 7 66 71 00 36</a>
-      </div>
     </header>
     <div class="contact-methods">
       <ContactForm />
@@ -110,22 +104,9 @@ export default {
       font-weight: 400
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%)
 
-    .contact-info
-      display: flex
-      justify-content: center
-      column-gap: 30px
-      margin-top: 20px
-      margin-bottom: 30px
-      @media (max-width: 425px)
-        flex-direction: column
-        row-gap: 10px
-      a
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%)
-        @extend .extLink
-
   .contact-methods
     max-width: 1000px
-    margin: 0 auto
+    margin: 30px auto
 
   .sm
     margin-top: 50px
