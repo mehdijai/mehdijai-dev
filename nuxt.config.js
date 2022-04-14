@@ -1,7 +1,4 @@
-import axios from "axios"
-const hostPath = process.env.CLIENT_PATH || "https://mehdijai-dev.herokuapp.com"
-const adminPath =
-  process.env.ADMIN_PATH || "https://mehdijai-admin-u6sre.ondigitalocean.app"
+const hostPath = process.env.CLIENT_PATH || "https://mehdijai.com"
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -69,19 +66,9 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    "@nuxtjs/axios",
-    "@nuxtjs/markdownit",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
   ],
-
-  markdownit: {
-    preset: "default",
-    linkify: true,
-    breaks: true,
-    injected: true,
-    // use: ['markdown-it-div', 'markdown-it-attrs'],
-  },
 
   robots: {
     UserAgent: "*",
@@ -97,19 +84,9 @@ export default {
       priority: 1,
       lastmod: new Date(),
     },
-    routes: async () => {
-      const { data } = await axios.get(adminPath + "/api/projects")
-      const routes = data.data.map((project) => `/${project.attributes.slug}`)
-      return ["/", ...routes]
+    routes: () => {
+      return require("static/projects.json").map((p) => p.slug)
     },
-  },
-
-  axios: {
-    baseURL: adminPath + "/api",
-  },
-
-  publicRuntimeConfig: {
-    backendUrl: adminPath,
   },
 
   styleResources: {

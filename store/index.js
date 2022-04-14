@@ -8,7 +8,6 @@ export const mutations = {
     state.projects = require("static/projects.json").map((p) => {
       p.tags = state.tags.filter((t) => p.tags.includes(t.id))
       p.content = require("static/projects/" + p.slug + "/content.md").default
-      // console.log(require("static/projects/" + p.slug + "/content.md"));
       return p
     })
   },
