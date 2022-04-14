@@ -16,7 +16,7 @@ export default {
       meta: [
         {
           property: "og:title",
-          content: "Mehdi Jai - JavaScript Fullstack developer.",
+          content: "Mehdi Jai - JavaScript Frontend developer.",
         },
         {
           property: "og:type",
@@ -28,7 +28,7 @@ export default {
         },
         {
           property: "og:image:alt",
-          content: "Mehdi Jai - JavaScript Fullstack developer.",
+          content: "Mehdi Jai - JavaScript Frontend developer.",
         },
         {
           property: "og:url",
