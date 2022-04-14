@@ -70,23 +70,6 @@ export default {
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
     "@nuxtjs/markdownit",
-    [
-      "nuxt-mail",
-      {
-        message: {
-          to: "contact@mehdijai.com",
-        },
-        smtp: {
-          host: "mail.privateemail.com",
-          port: 465,
-          secured: true,
-          auth: {
-            user: "contact@mehdijai.com",
-            pass: "MehD1_j@i_coM@Dm1N",
-          },
-        },
-      },
-    ],
   ],
 
   axios: {
@@ -123,6 +106,10 @@ export default {
   styleResources: {
     sass: ["./assets/sass/*.sass"],
   },
+
+  serverMiddleware: [
+    '~/app/contact'
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

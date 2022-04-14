@@ -72,11 +72,9 @@ export default {
       this.success = false
       this.error = null
 
-      this.$mail
-        .send({
-          from: "contact@mehdijai.com",
-          subject: "MJPortfolio",
-          html: String(`
+      this.$axios
+        .$post("/api/contact", {
+          msg: String(`
           message from: ${this.name} - ${this.email};
           <h3>${this.subject}</h3>
           <p>${this.message}</p>
@@ -93,7 +91,6 @@ export default {
         .catch((err) => {
           this.sending = false
           this.error = err.message
-          console.error(err);
         })
         .finally(() => {
           setTimeout(() => {
