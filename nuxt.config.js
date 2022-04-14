@@ -72,9 +72,9 @@ export default {
     "@nuxtjs/markdownit",
   ],
 
-  axios: {
-    baseURL: process.env.NODE_ENV === 'production' ? hostPath : "http://localhost:3000",
-  },
+  // axios: {
+  //   baseURL: process.env.NODE_ENV === 'production' ? hostPath : "http://localhost:3000",
+  // },
 
   markdownit: {
     preset: "default",
