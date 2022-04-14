@@ -1,7 +1,7 @@
 <template>
   <div class="form-wrapper">
     <div v-if="sending" class="loading">
-      <img src="/loader.svg">
+      <img src="/loader.svg" />
     </div>
     <form class="contact-form" @submit.prevent="sendEmail">
       <div v-if="error" class="result error">
@@ -11,11 +11,29 @@
         <h2>Message was sent successfully! I will respond ASAP.</h2>
       </div>
       <div class="group">
-        <input v-model="name" :disabled="sending" required type="text" placeholder="Full Name" />
-        <input v-model="email" :disabled="sending" required type="email" placeholder="Email" />
+        <input
+          v-model="name"
+          :disabled="sending"
+          required
+          type="text"
+          placeholder="Full Name"
+        />
+        <input
+          v-model="email"
+          :disabled="sending"
+          required
+          type="email"
+          placeholder="Email"
+        />
       </div>
       <div class="group">
-        <input v-model="subject" :disabled="sending" required type="text" placeholder="Subject" />
+        <input
+          v-model="subject"
+          :disabled="sending"
+          required
+          type="text"
+          placeholder="Subject"
+        />
       </div>
       <div class="group">
         <textarea
@@ -53,14 +71,17 @@ export default {
       this.sending = true
       this.success = false
       this.error = null
-      const message = `
-        message from: ${this.name} - ${this.email};
-        <h3>${this.subject}</h3>
-        <p>${this.message}</p>
-      `
 
-      this.$axios
-        .$post("/sendmail", { message: String(message) })
+      this.$mail
+        .send({
+          from: "contact@mehdijai.com",
+          subject: "MJPortfolio",
+          html: String(`
+          message from: ${this.name} - ${this.email};
+          <h3>${this.subject}</h3>
+          <p>${this.message}</p>
+        `),
+        })
         .then((res) => {
           this.name = ""
           this.email = ""

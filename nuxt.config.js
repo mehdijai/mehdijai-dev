@@ -66,9 +66,38 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    "@nuxtjs/axios",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
+    "@nuxtjs/markdownit",
+    [
+      "nuxt-mail",
+      {
+        message: {
+          to: "contact@mehdijai.com",
+        },
+        smtp: {
+          host: "mail.privateemail.com",
+          port: 465,
+          auth: {
+            user: "contact@mehdijai.com",
+            pass: "MehD1_j@i_coM@Dm1N",
+          },
+        },
+      },
+    ],
   ],
+
+  axios: {
+    baseURL: process.env.BASE_URL,
+  },
+
+  markdownit: {
+    preset: "default",
+    linkify: true,
+    breaks: true,
+    injected: true,
+  },
 
   robots: {
     UserAgent: "*",
@@ -85,7 +114,8 @@ export default {
       lastmod: new Date(),
     },
     routes: () => {
-      return require("static/projects.json").map((p) => p.slug)
+      const projects = require("./static/projects.json")
+      return projects.map((p) => p.slug)
     },
   },
 

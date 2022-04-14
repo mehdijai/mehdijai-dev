@@ -15,7 +15,7 @@
 import { gsap } from "gsap"
 export default {
   name: "DefaultLayout",
-  fetch() {
+  created() {
     this.$store.commit("setProjects")
   },
   mounted() {

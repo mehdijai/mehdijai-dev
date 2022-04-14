@@ -1,13 +1,13 @@
 export const state = () => ({
-  tags: require("static/tags.json"),
+  tags: require("../static/tags.json"),
   projects: [],
 })
 
 export const mutations = {
   setProjects(state) {
-    state.projects = require("static/projects.json").map((p) => {
+    state.projects = require("../static/projects.json").map((p) => {
       p.tags = state.tags.filter((t) => p.tags.includes(t.id))
-      p.content = require("static/projects/" + p.slug + "/content.md").default
+      p.content = require("../static/projects/" + p.slug + "/content.md").default
       return p
     })
   },

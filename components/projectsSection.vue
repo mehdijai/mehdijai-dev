@@ -22,7 +22,7 @@ export default {
       projects: [],
     }
   },
-  fetch() {
+  created() {
     this.projects = this.$store.getters.getProjects
   },
   mounted() {
