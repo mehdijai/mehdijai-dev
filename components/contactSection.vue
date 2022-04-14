@@ -3,7 +3,7 @@
     <header>
       <h2 class="contact-title">Contact me.</h2>
       <p class="contact-brief">
-        I’m currently open for work as JS fullstack or VueJS frontend developer
+        I’m currently open for work as JS / VueJS frontend developer
         opportunity.
       </p>
       <div itemscope itemtype="https://schema.org/Person" class="contact-info">

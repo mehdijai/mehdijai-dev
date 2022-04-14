@@ -73,7 +73,7 @@ export default {
       this.error = null
 
       this.$axios
-        .$post("/api/contact", {
+        .$post(window.location.origin + "/api/contact", {
           msg: String(`
           message from: ${this.name} - ${this.email};
           <h3>${this.subject}</h3>
