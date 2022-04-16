@@ -103,9 +103,9 @@ export default {
     sass: ["./assets/sass/*.sass"],
   },
 
-  serverMiddleware: [
-    '~/app/contact'
-  ],
+  // serverMiddleware: [
+  //   '~/app/contact'
+  // ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

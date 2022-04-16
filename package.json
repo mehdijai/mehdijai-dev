@@ -18,6 +18,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_transactional": "^1.0.47",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/robots": "^2.5.0",

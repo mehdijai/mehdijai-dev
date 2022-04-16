@@ -67,37 +67,74 @@ export default {
     }
   },
   methods: {
-    sendEmail() {
+    async sendEmail() {
       this.sending = true
       this.success = false
       this.error = null
 
-      this.$axios
-        .$post(window.location.origin + "/api/contact", {
-          msg: String(`
-          message from: ${this.name} - ${this.email};
-          <h3>${this.subject}</h3>
-          <p>${this.message}</p>
-        `),
-        })
-        .then((res) => {
-          this.name = ""
-          this.email = ""
-          this.subject = ""
-          this.message = ""
-          this.sending = false
-          this.success = true
-        })
-        .catch((err) => {
-          this.sending = false
-          this.error = err.message
-        })
-        .finally(() => {
-          setTimeout(() => {
-            this.success = false
-            this.error = null
-          }, 5000)
-        })
+      const mailchimp = require("@mailchimp/mailchimp_transactional")(
+        "DjcZ5UKwVLyJL8XTgTD2CA"
+      )
+
+      const message = {
+        from_email: "form@mehdijai.com",
+        subject: "Mehdi Jai Dev - " + this.subject,
+        html: `<b>${this.name} - ${this.email} </b></br>${this.message}`,
+        to: [
+          {
+            email: "contact@mehdijai.com",
+            type: "to",
+          },
+        ],
+      }
+
+      const response = await mailchimp.messages.send({
+        message,
+      })
+
+      if (response[0].status === "sent") {
+        this.name = ""
+        this.email = ""
+        this.subject = ""
+        this.message = ""
+        this.sending = false
+        this.success = true
+      } else {
+        this.sending = false
+        this.error = "An error occurred! Please try again later."
+      }
+
+      setTimeout(() => {
+        this.success = false
+        this.error = null
+      }, 5000)
+
+      // this.$axios
+      //   .$post(window.location.origin + "/api/contact", {
+      //     msg: String(`
+      //     message from: ${this.name} - ${this.email};
+      //     <h3>${this.subject}</h3>
+      //     <p>${this.message}</p>
+      //   `),
+      //   })
+      //   .then((res) => {
+      //     this.name = ""
+      //     this.email = ""
+      //     this.subject = ""
+      //     this.message = ""
+      //     this.sending = false
+      //     this.success = true
+      //   })
+      //   .catch((err) => {
+      //     this.sending = false
+      //     this.error = err.message
+      //   })
+      //   .finally(() => {
+      //     setTimeout(() => {
+      //       this.success = false
+      //       this.error = null
+      //     }, 5000)
+      //   })
     },
   },
 }
