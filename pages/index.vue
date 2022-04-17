@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { gsap } from "gsap"
 export default {
   name: "IndexPage",
   head() {
@@ -44,6 +45,13 @@ export default {
         },
       ],
     }
+  },
+  mounted() {
+    gsap.from(".v-timeline", {
+      duration: 0.7,
+      ease: "power4.inOut",
+      height: 0,
+    })
   },
 }
 </script>

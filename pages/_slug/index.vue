@@ -2,8 +2,8 @@
   <div>
     <!-- <div v-if="$fetchState.pending" class="alert pending">
       <h2>Fetching project...</h2>
-    </div>
-    <div v-else-if="$fetchState.error" class="alert error">
+    </div>-->
+    <!-- <div v-if="$fetchState.error" class="alert error">
       <h2>An error occurred :(</h2>
       <button @click="$fetch">
         <span class="material-icons"> refresh </span>
@@ -43,26 +43,20 @@
 </template>
 
 <script>
-import { marked } from "marked"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { CSSRulePlugin } from "gsap/CSSRulePlugin"
 
-marked.setOptions({
-  breaks: true,
-})
-
 export default {
   name: "ProjectPage",
-  data() {
-    return {
-      project: null,
-    }
-  },
-  fetch() {
-    this.project = this.$store.getters.getProjects.find(
-      (p) => (p.slug === this.$route.params.slug)
+  asyncData({ redirect, params, store }) {
+    const project = store.getters.getProjects.find(
+      (p) => p.slug === params.slug
     )
+    if (project === undefined) {
+      redirect("/404")
+    }
+    return { project }
   },
   head() {
     if (this.project) {
@@ -72,7 +66,7 @@ export default {
           {
             hid: "description",
             name: "description",
-            content: this.render_plain(this.project.content),
+            content: this.project.content,
           },
           {
             property: "og:title",
@@ -145,43 +139,6 @@ export default {
         },
         "-=0.7"
       )
-  },
-  methods: {
-    htmlEscapeToText(text) {
-      return text.replace(/&#[0-9]*;|&amp;/g, function (escapeCode) {
-        if (escapeCode.match(/amp/)) {
-          return "&"
-        }
-
-        return String.fromCharCode(escapeCode.match(/[0-9]+/))
-      })
-    },
-    // return a custom renderer for marked.
-    render_plain() {
-      const render = new marked.Renderer()
-
-      // render just the text of a link
-      render.link = function (href, title, text) {
-        return text
-      }
-
-      // render just the text of a paragraph
-      render.paragraph = function (text) {
-        return this.htmlEscapeToText(text) + "\r\n"
-      }
-
-      // render just the text of a heading element, but indicates level
-      render.heading = function (text, level) {
-        return level + " ) " + text
-      }
-
-      // render nothing for images
-      render.image = function (href, title, text) {
-        return ""
-      }
-
-      return render
-    },
   },
 }
 </script>

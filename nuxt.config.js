@@ -1,7 +1,8 @@
-const hostPath = process.env.CLIENT_PATH || "https://mehdijai-dev.herokuapp.com"
+const hostPath = process.env.CLIENT_PATH || "https://mehdijai.pages.dev"
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  target: "static",
   head: {
     title: "Mehdi Jai - JavaScript Frontend developer.",
     htmlAttrs: {
@@ -15,7 +16,7 @@ export default {
         hid: "description",
         name: "description",
         content:
-          "Mehdi Jai, JavaScript Frontend developer based in Morocco. I create SaaS, Web Applications and Desktop Application With JavaScript and VueJS.",
+          "Mehdi Jai, JavaScript Frontend developer based in Morocco. I create SaaS, Web Applications and Desktop Application With PHP, JavaScript and VueJS.",
       },
       { name: "format-detection", content: "telephone=no" },
       {
@@ -52,7 +53,7 @@ export default {
   css: ["~/assets/sass/main.sass"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: "~/plugins/mailer.js" }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -99,13 +100,13 @@ export default {
     },
   },
 
+  publicRuntimeConfig: {
+    mailchipApi: process.env.MAILCHIMP_API,
+  },
+
   styleResources: {
     sass: ["./assets/sass/*.sass"],
   },
-
-  // serverMiddleware: [
-  //   '~/app/contact'
-  // ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

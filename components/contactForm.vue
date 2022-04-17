@@ -72,27 +72,14 @@ export default {
       this.success = false
       this.error = null
 
-      const mailchimp = require("@mailchimp/mailchimp_transactional")(
-        "DjcZ5UKwVLyJL8XTgTD2CA"
-      )
-
-      const message = {
-        from_email: "form@mehdijai.com",
-        subject: "Mehdi Jai Dev - " + this.subject,
-        html: `<b>${this.name} - ${this.email} </b></br>${this.message}`,
-        to: [
-          {
-            email: "contact@mehdijai.com",
-            type: "to",
-          },
-        ],
-      }
-
-      const response = await mailchimp.messages.send({
-        message,
+      const response = await this.$sendEmail.send({
+        name: this.name,
+        email: this.email,
+        subject: this.subject,
+        message: this.message,
       })
 
-      if (response[0].status === "sent") {
+      if (response.status === "sent") {
         this.name = ""
         this.email = ""
         this.subject = ""
@@ -108,33 +95,6 @@ export default {
         this.success = false
         this.error = null
       }, 5000)
-
-      // this.$axios
-      //   .$post(window.location.origin + "/api/contact", {
-      //     msg: String(`
-      //     message from: ${this.name} - ${this.email};
-      //     <h3>${this.subject}</h3>
-      //     <p>${this.message}</p>
-      //   `),
-      //   })
-      //   .then((res) => {
-      //     this.name = ""
-      //     this.email = ""
-      //     this.subject = ""
-      //     this.message = ""
-      //     this.sending = false
-      //     this.success = true
-      //   })
-      //   .catch((err) => {
-      //     this.sending = false
-      //     this.error = err.message
-      //   })
-      //   .finally(() => {
-      //     setTimeout(() => {
-      //       this.success = false
-      //       this.error = null
-      //     }, 5000)
-      //   })
     },
   },
 }

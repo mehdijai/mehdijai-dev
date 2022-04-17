@@ -17,7 +17,4 @@ export const getters = {
   getProjects(state) {
     return state.projects
   },
-  getProject(state, slug) {
-    return state.projects.find((p) => p.slug === slug)
-  },
 }
