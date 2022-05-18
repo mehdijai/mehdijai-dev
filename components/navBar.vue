@@ -30,15 +30,17 @@
             path: link.link.includes('#') ? '/' : link.link,
             hash: link.link.includes('#') ? link.link.replace('/', '') : null,
           }"
-          >{{ link.title }}</nuxt-link>
-          <a
+          >{{ link.title }}</nuxt-link
+        >
+        <a
           v-else
-          :key="index"
+          :key="'s' + index"
           class="link"
           :class="getClass[index]"
           :href="link.link"
           target="_blank"
-          >{{ link.title }}</a>
+          >{{ link.title }}</a
+        >
       </template>
       <button
         class="toggleMenu"
@@ -52,11 +54,24 @@
       <div v-if="openMenu" class="menu-list">
         <template v-for="(link, index) in links">
           <nuxt-link
+            v-if="!link.isCTA"
             :key="index"
             class="link"
-            :class="link.isCTA ? 'cta' : ''"
-            :to="link.link"
+            :class="getClass[index]"
+            :to="{
+              path: link.link.includes('#') ? '/' : link.link,
+              hash: link.link.includes('#') ? link.link.replace('/', '') : null,
+            }"
             >{{ link.title }}</nuxt-link
+          >
+          <a
+            v-else
+            :key="'s' + index"
+            class="link"
+            :class="getClass[index]"
+            :href="link.link"
+            target="_blank"
+            >{{ link.title }}</a
           >
         </template>
       </div>
@@ -96,11 +111,6 @@ export default {
       currentHash: null,
     }
   },
-  // async fetch() {
-  //   const url = (await this.$axios.$get("/resume?populate=*")).data.attributes
-  //     .file.data.attributes.url
-  //   this.links[this.links.length - 1].link = this.$config.backendUrl + url
-  // },
   computed: {
     getClass() {
       return this.links.map((link) => {
@@ -126,7 +136,6 @@ export default {
       defaults: { duration: 0.5, ease: "power4.inOut" },
     })
     tl.from("nav", {
-      clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
       opacity: 0,
     }).from(
       ".container > a",
@@ -143,7 +152,6 @@ export default {
 
 <style lang="sass">
 nav
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
   width: 100%
   background-color: rgba($black-light, 0.8)
   backdrop-filter: blur(5px)

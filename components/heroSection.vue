@@ -1,7 +1,7 @@
 <template>
   <section class="hero">
     <h1 class="headline">
-      Mehdi Jai, <span>JavaScript Frontend developer</span>
+      Mehdi Jai, <span>Fullstack JS/PHP developer</span>
     </h1>
     <div class="specialties row-1">
       <span>HTML5</span>
@@ -79,7 +79,7 @@ export default {
   .headline
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
     opacity: 1
-    width: 519px
+    width: 550px
     font-size: 3rem
     position: absolute
     top: 50%
