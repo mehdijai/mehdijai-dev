@@ -1,7 +1,6 @@
 const hostPath = process.env.CLIENT_PATH || "https://mehdijai.pages.dev"
 
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
   target: "static",
   head: {
     title: "Mehdi Jai - Fullstack JS/PHP developer.",
@@ -49,23 +48,17 @@ export default {
     ],
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["~/assets/sass/main.sass"],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [{ src: "~/plugins/mailer.js" }],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/eslint
     "@nuxtjs/eslint-module",
     "@nuxtjs/style-resources",
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/sitemap",
@@ -108,7 +101,6 @@ export default {
     sass: ["./assets/sass/*.sass"],
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     loaders: {
       sass: {
