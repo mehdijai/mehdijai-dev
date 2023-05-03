@@ -16,7 +16,7 @@ export default {
         hid: "description",
         name: "description",
         content:
-          "Mehdi Jai, Fullstack JS/PHP developer based in Morocco. I create SaaS, Web Applications and Desktop Application With PHP, JavaScript and VueJS.",
+          "Mehdi Jai, VueJS Frontend web developer. I create SaaS, Web Applications and Desktop Application With PHP, JavaScript/TypeScript and VueJS.",
       },
       { name: "format-detection", content: "telephone=no" },
       {

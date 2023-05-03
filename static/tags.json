@@ -13,5 +13,7 @@
   { "id": 12, "title": "Firebase", "bg": "#FB70A9", "color": "#4E56A6" },
   { "id": 13, "title": "EJS", "bg": "#B4CA65", "color": "#A91E50" },
   { "id": 14, "title": "Sequelize", "bg": "#275887", "color": "#ffffff" },
-  { "id": 15, "title": "JavaScript", "bg": "#F0DB4F", "color": "#323330" }
+  { "id": 15, "title": "JavaScript", "bg": "#F0DB4F", "color": "#323330" },
+  { "id": 16, "title": "HTML5", "bg": "#e34c26", "color": "#ffffff" },
+  { "id": 17, "title": "Ionic", "bg": "#387ef5", "color": "#ffffff" }
 ]
