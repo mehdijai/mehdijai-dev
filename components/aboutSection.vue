@@ -5,12 +5,7 @@
         <h2>About me.</h2>
         <p>
           <span itemprop="name">Mehdi Jai</span>,
-          <span itemprop="jobTitle">Fullstack JS/PHP web developer</span>. I started
-          my journey in late 2014 out of curiosity. However, The start of my
-          professional career was in 2019 with building my two majors SaaS;
-          Tabarro3.ma, Autodrive.ma. I have a long experience with JavaScript,
-          NodeJS, and PHP Laravel, with VueJS as a front-end framework. Plus,
-          ElectronJS , VBA and Figma.
+          <span itemprop="jobTitle">VueJS Frontend web developer</span>. I'm a curious, autonomous developer. I started my journey in 2019 professionally. The beginning was with building my two majors SaaS; Tabarro3.ma, Autodrive.ma. I have a long experience with JavaScript/TypeScript, SCSS/SASS, NodeJS, and PHP Laravel, VueJS. Plus, ElectronJS, VBA, Figma, and other tools, programming languages, and skills.
         </p>
       </div>
       <div class="image">

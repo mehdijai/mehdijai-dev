@@ -8,7 +8,7 @@
       </p>
     </header>
     <div class="contact-methods">
-      <ContactForm />
+      <a href="mailto:contact@mehdijai.com" class="link" >contact@mehdijai.com</a>
     </div>
     <div class="sm">
       <a href="https://github.com/mehdijai">
@@ -107,6 +107,13 @@ export default {
   .contact-methods
     max-width: 1000px
     margin: 30px auto
+    .link
+       color: $primary-light
+       text-decoration: none
+       font-weight: 600
+       transition: 0.4s ease-out
+       &:hover
+        color: $gray-light
 
   .sm
     margin-top: 50px
