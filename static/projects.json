@@ -5,6 +5,7 @@
     "slug": "autodrive-ma",
     "thumbnail": "/projects/autodrive-ma/thumbnail.jpg",
     "content": "",
+    "publishedAt": "15/04/2022",
     "tags": [1, 2, 6, 5]
   },
   {
@@ -13,6 +14,7 @@
     "slug": "tabarro3-ma",
     "thumbnail": "/projects/tabarro3-ma/tabarro3-ma-thumbnail.png",
     "content": "",
+    "publishedAt": "15/04/2022",
     "tags": [1, 4, 3, 5]
   },
   {
@@ -21,14 +23,52 @@
     "slug": "3sp-app",
     "thumbnail": "/projects/3sp-app/thumbnail.jpg",
     "content": "",
+    "publishedAt": "15/04/2022",
     "tags": [3, 5, 7, 8, 9, 11, 14, 15]
   },
   {
     "id": 4,
-    "title": "Medostudios",
-    "slug": "medostudios",
-    "thumbnail": "/projects/medostudios/thumbnail.jpg",
+    "title": "Supervizor",
+    "slug": "supervizor",
+    "thumbnail": "/projects/supervizor/thumbnail.png",
     "content": "",
-    "tags": [5, 9, 10, 13, 15]
+    "publishedAt": "03/05/2023",
+    "tags": [3, 5, 15]
+  },
+  {
+    "id": 5,
+    "title": "Sogesoft",
+    "slug": "sogesoft",
+    "thumbnail": "/projects/sogesoft/thumbnail.png",
+    "content": "",
+    "publishedAt": "03/05/2023",
+    "tags": [16, 5, 6]
+  },
+  {
+    "id": 6,
+    "title": "BleuTaxi",
+    "slug": "bleutaxi",
+    "thumbnail": "/projects/bleutaxi/thumbnail.png",
+    "content": "",
+    "publishedAt": "03/05/2023",
+    "tags": [17, 3, 16, 11, 5]
+  },
+  {
+    "id": 7,
+    "title": "MyColis France",
+    "slug": "mycolis-france",
+    "thumbnail": "/projects/mycolis-france/thumbnail.png",
+    "content": "",
+    "publishedAt": "03/05/2023",
+    "tags": [16, 5, 15]
+  },
+  {
+    "id": 8,
+    "title": "Alkoutab",
+    "slug": "alkoutab",
+    "thumbnail": "/projects/alkoutab/thumbnail.png",
+    "content": "",
+    "publishedAt": "03/05/2023",
+    "tags": [16, 15, 5]
   }
 ]
